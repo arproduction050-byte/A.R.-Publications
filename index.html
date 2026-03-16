@@ -871,6 +871,52 @@ if(closeBtn) {
         iframe.src = src;
     }
 }
+      // =========================================
+// VANKARI SERIES VIDEO MODAL LOGIC (UPDATED)
+// =========================================
+const openVankariBtn = document.getElementById('open-vankari-modal');
+const closeVankariBtn = document.getElementById('close-vankari-modal');
+const vankariModal = document.getElementById('vankari-video-modal');
+const vankariVideoPlayer = document.getElementById('vankari-video-player');
+const vankariBackdrop = document.getElementById('vankari-backdrop');
+
+if (openVankariBtn && vankariModal) {
+    
+    // Modal open karna
+    openVankariBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        vankariModal.style.display = 'flex'; // Yahan se popup visible hoga
+        document.body.classList.add('modal-open'); // Background scroll lock
+        
+        if(vankariVideoPlayer) {
+            vankariVideoPlayer.currentTime = 0;
+            vankariVideoPlayer.play(); 
+        }
+    });
+
+    // Modal close karna function
+    const closeVankariModal = () => {
+        vankariModal.style.display = 'none'; // Popup hide hoga
+        document.body.classList.remove('modal-open'); // Scroll wapas chalu
+        
+        if (vankariVideoPlayer) {
+            vankariVideoPlayer.pause(); 
+        }
+    };
+
+    // Cross (X) par click karke band karna
+    if(closeVankariBtn) closeVankariBtn.addEventListener('click', closeVankariModal);
+    
+    // Bahar dark area par click karke band karna
+    if(vankariBackdrop) vankariBackdrop.addEventListener('click', closeVankariModal);
+
+    // Escape (Esc) button dabane par band karna
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && vankariModal.style.display === 'flex') {
+            closeVankariModal();
+        }
+    });
+}
 </script>
 </body>
 </html>
