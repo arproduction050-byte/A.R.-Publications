@@ -7,12 +7,12 @@
     
     <title>{% block title %}A.R. Publications | The Literary Universe of Anuj Rawal{% endblock %}</title>
 
-    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='.images./favicon.ico') }}">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='.css./style.css') }}">
 
     <style>
         /* 1. Cream Background for Light Theme */
@@ -142,10 +142,10 @@
         {% block content %}{% endblock %}
     </main>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="{{ url_for('static', filename='.js./script.js') }}"></script>
 
-    <audio id="sanatan-global-audio" src="{{ url_for('static', filename='audio/sanatan-sound.mp3') }}" preload="auto"></audio>
-    <audio id="vankari-global-audio" src="{{ url_for('static', filename='audio/vankari-sound.mp3') }}" preload="auto"></audio>
+    <audio id="sanatan-global-audio" src="{{ url_for('static', filename='.audio./sanatan-sound.mp3') }}" preload="auto"></audio>
+    <audio id="vankari-global-audio" src="{{ url_for('static', filename='.audio./vankari-sound.mp3') }}" preload="auto"></audio>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
