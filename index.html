@@ -12,14 +12,29 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <link rel="stylesheet" href="./static/css/style.css">
+    <link rel="stylesheet" href="static/css/style.css">
 
     <style>
         /* 1. Cream Background for Light Theme */
         body {
-            background-color: #e4d6bb !important; /* Premium Cream Color */
-            transition: background-color 1.2s ease;
-        }
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    height: auto !important;
+    position: relative;
+}
+
+/* Jab modal khule tabhi scroll band ho */
+body.modal-open {
+    overflow: hidden !important;
+}
+
+/* Modal default me gayab rahe */
+.custom-series-modal {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999 !important; /* Khulne par sabse upar rahe */
+}
 
         /* 2. Cream Navbar */
         .navbar {
@@ -159,6 +174,11 @@
             .contact-text-val { font-size: 0.95rem; overflow-wrap: anywhere; } 
             .social-squircle { width: 55px; height: 55px; font-size: 1.5rem; border-radius: 15px; }
         }
+        @media (min-width: 768px) {
+    .pillars-grid {
+        grid-template-columns: 1fr 1fr !important;
+    }
+}
     </style>
 </head>
 <body>
@@ -257,7 +277,7 @@
                 </div>
             </div> 
 
-            <div class="vankari-mobile" style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(10, 0, 0, 0.8) 100%), url('./static/images/vankari-bg.png') no-repeat center center; background-size: cover; padding: 40px 0 20px; border-top: 1px solid rgba(255, 51, 51, 0.2); box-shadow: inset 0 20px 50px rgba(0,0,0,0.8);">
+            <div class="vankari-mobile" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(10, 0, 0, 0.8) 100%), url('./static/images/vankari-bg.png'); background-position: center center; background-repeat: no-repeat; background-size: cover; padding: 40px 0 20px; border-top: 1px solid rgba(255, 51, 51, 0.2); box-shadow: inset 0 20px 50px rgba(0,0,0,0.8);">
                 
                 <div class="mobile-section-header" style="padding: 0 20px;">
                     <h2 style="color: #fff; text-shadow: 0 0 15px rgba(255, 51, 51, 0.6); font-weight: 800; font-size: 2.2rem; line-height: 1.1; text-transform: uppercase;">The<br>Vankari<br>Series</h2>
@@ -329,7 +349,7 @@
         </div>
 
         <div class="author-desktop-view">
-            <section class="hero" style="min-height: 60vh; padding: 150px 0 80px; background-image: linear-gradient(135deg, rgba(10, 10, 28, 0.95), rgba(255, 140, 66, 0.8)), url('static/images/philosophy-bg.png'); background-position: center center; background-repeat: no-repeat; background-size: cover;">
+           <section class="hero" style="min-height: 60vh; padding: 150px 0 80px; background: linear-gradient(135deg, rgba(10, 10, 28, 0.95), rgba(255, 140, 66, 0.8)), url('./static/images/philosophy-bg.png') no-repeat center center; background-size: cover;">
                 <div class="container" style="text-align: center; color: white;">
                     <span class="spiritual-tag" style="margin-bottom: 20px;">The Literary Universe</span>
                     <h1 style="font-size: 4rem; margin-bottom: 20px;">Anuj Rawal</h1>
@@ -615,20 +635,69 @@
             </div>
         </div>
 
-        <div id="sanatan-video-modal" class="custom-series-modal">
-            <div class="modal-backdrop"></div>
-            <div class="sanatan-modal-content">
-                <div class="modal-close-btn" id="close-sanatan-modal">&times;</div>
-                <div class="video-container">
-                    <iframe id="sanatan-yt-iframe" src="https://www.youtube.com/embed/L7UgZtzDt0k?enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                </div>
-                <div class="sanatan-modal-text">
-                    <h3 class="modal-gold-title">Decoding the Eternal Way of Living</h3>
-                    <p class="lead-text">Is Sanatan Dharma merely a collection of archaic rituals, or is it the most sophisticated, scientifically grounded blueprint for human existence ever conceived?</p>
-                    <p>In the <strong>Sanatan</strong> series, author Anuj Rawal bridges the seemingly impossible gap between the logic-driven world of modern science and the profound, timeless wisdom of the Vedic Rishis.</p>
-                </div>
-            </div>
+        <div id="sanatan-video-modal" class="custom-series-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 15000; align-items: flex-start; justify-content: center; background: rgba(0,0,0,0.95); overflow-y: auto; padding: 40px 10px;">
+    
+    <div class="modal-backdrop" id="sanatan-backdrop" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+    
+    <div class="sanatan-modal-content" style="background: #120b07; border: 1px solid #d47e2a; border-radius: 12px; width: 95%; max-width: 850px; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.8); margin-bottom: 50px;">
+        
+        <div class="modal-close-btn" id="close-sanatan-modal" style="position: absolute; top: 10px; right: 20px; color: #fff; font-size: 2.5rem; cursor: pointer; z-index: 100; text-shadow: 0 0 10px #000;">&times;</div>
+        
+        <div class="video-container" style="border-bottom: 2px solid #d47e2a; background: #000; line-height: 0;">
+            <iframe id="sanatan-yt-iframe" src="https://www.youtube.com/embed/L7UgZtzDt0k?enablejsapi=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="width: 100%; aspect-ratio: 16/9;"></iframe>
         </div>
+        
+        <div class="sanatan-modal-text" style="padding: 40px 30px; text-align: center;">
+            <h3 style="color: #ff9933; font-size: 2.2rem; font-weight: 800; margin-bottom: 15px; font-family: 'Poppins', sans-serif;">Decoding the Eternal Way of Living</h3>
+            
+            <p style="color: #eaeaea; font-style: italic; font-size: 1.15rem; line-height: 1.6; margin-bottom: 35px;">
+                Is Sanatan Dharma merely a collection of archaic rituals, or is it the most sophisticated blueprint for human existence ever conceived?
+            </p>
+
+            <div class="pillars-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; text-align: left;">
+                
+                <div class="pillar-card" style="background: rgba(255, 153, 51, 0.05); border: 1px solid rgba(255, 153, 51, 0.2); border-radius: 12px; padding: 25px;">
+                    <h4 style="color: #ff9933; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-dna"></i> Biological Wisdom
+                    </h4>
+                    <p style="color: #cccccc; font-size: 1rem; line-height: 1.6;">
+                        Discover how practices like fasting (Ekadashi) are precise biological tools designed to trigger cellular renewal (Autophagy) and align our circadian rhythms with the cosmos.
+                    </p>
+                </div>
+
+                <div class="pillar-card" style="background: rgba(255, 153, 51, 0.05); border: 1px solid rgba(255, 153, 51, 0.2); border-radius: 12px; padding: 25px;">
+                    <h4 style="color: #ff9933; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-brain"></i> Psychology of Rituals
+                    </h4>
+                    <p style="color: #cccccc; font-size: 1rem; line-height: 1.6;">
+                        Explore how the 16 Samskaras act as vital neurological anchor points masterfully designed to guide human psychology through life's chaotic transitions, from birth to final liberation.
+                    </p>
+                </div>
+                
+                <div class="pillar-card" style="background: rgba(255, 153, 51, 0.05); border: 1px solid rgba(255, 153, 51, 0.2); border-radius: 12px; padding: 25px;">
+                    <h4 style="color: #ff9933; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-atom"></i> Physics of Space
+                    </h4>
+                    <p style="color: #cccccc; font-size: 1rem; line-height: 1.6;">
+                        Unveil the quantum reality of Vastu Shastra—the sacred geometry of aligning physical spaces with solar frequencies and planetary magnetic fields to optimize human energy.
+                    </p>
+                </div>
+
+                <div class="pillar-card" style="background: rgba(255, 153, 51, 0.05); border: 1px solid rgba(255, 153, 51, 0.2); border-radius: 12px; padding: 25px;">
+                    <h4 style="color: #ff9933; margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-skull"></i> Science of Dark Energies
+                    </h4>
+                    <p style="color: #cccccc; font-size: 1rem; line-height: 1.6;">
+                        Demystify taboo realms like 'black magic' through the actual physics of frequency and energy transfer that explain ancient tantric practices and psychosomatic triggers.
+                    </p>
+                </div>
+
+            </div>
+
+            <p style="color: #ff9933; margin-top: 40px; font-weight: 600;">Join this journey to rediscover the scientific roots of India's heritage.</p>
+        </div>
+    </div>
+</div>
 
         <div id="vankari-video-modal" class="custom-series-modal vankari-modal-theme">
             <div class="modal-backdrop" id="vankari-backdrop"></div>
@@ -690,47 +759,31 @@
             </div>
         </div>
 
-        <script>
-        function playSeriesSound(url, seriesType) {
-            localStorage.setItem('pending_audio_type', seriesType);
-            
-            let sound = document.getElementById(seriesType + '-global-audio');
-            if (sound) {
-                sound.currentTime = 0;
-                sound.play().catch(e => console.log("Initial play blocked", e));
-            }
-            
-            setTimeout(() => {
-                window.location.href = url;
-            }, 150); 
-        }
-        </script>
+       
     </main>
 
     <script src="./static/js/script.js"></script>
 
-    <audio id="sanatan-global-audio" src="./static/audio/sanatan-sound.mp3" preload="auto"></audio>
-    <audio id="vankari-global-audio" src="./static/audio/vankari-sound.mp3" preload="auto"></audio>
-
+   <audio id="sanatan-global-audio" src="./static/audio/sanatan-sound.mp3" preload="auto"></audio>
+<audio id="vankari-global-audio" src="./static/audio/vankari-sound.mp3" preload="auto"></audio>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const pendingSound = localStorage.getItem('pending_audio_type');
-        if (pendingSound) {
-            const audio = document.getElementById(pendingSound + '-global-audio');
-            if (audio) {
-                audio.play().then(() => { localStorage.removeItem('pending_audio_type'); })
-                .catch(error => {
-                    const playOnInteraction = () => {
-                        audio.play();
-                        localStorage.removeItem('pending_audio_type');
-                        document.removeEventListener('click', playOnInteraction);
-                    };
-                    document.addEventListener('click', playOnInteraction);
-                });
-            }
-        }
-    });
-    </script>
+function playSeriesSound(url, seriesType) {
+    // 1. Tell the next page which sound to continue playing
+    localStorage.setItem('pending_audio_type', seriesType);
+    
+    // 2. Play the sound instantly
+    let sound = document.getElementById(seriesType + '-global-audio');
+    if (sound) {
+        sound.currentTime = 0;
+        sound.play().catch(e => console.log("Initial play blocked", e));
+    }
+    
+    // 3. Wait 1.2 seconds BEFORE changing the page so the sound can play!
+    setTimeout(() => {
+        window.location.href = url;
+    }, 1200); 
+}
+</script>
     
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -754,5 +807,70 @@
             });
         });
     </script>
+    <script>
+// Elements ko select karein
+const openBtn = document.getElementById('open-sanatan-modal');
+const sanatanModal = document.getElementById('sanatan-video-modal');
+const closeBtn = document.getElementById('close-sanatan-modal');
+const iframe = document.getElementById('sanatan-yt-iframe');
+
+// 1. Modal Open karne ka logic
+if (openBtn) {
+    openBtn.addEventListener('click', (e) => {
+        e.preventDefault(); // Default link behavior rokein
+        sanatanModal.style.display = 'flex'; // Modal show karein
+        document.body.style.overflow = 'hidden'; // Page scroll lock karein
+    });
+}
+
+// 2. Modal Close karne ka logic
+if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+        sanatanModal.style.display = 'none'; // Modal hide karein
+        document.body.style.overflow = 'auto'; // Page scroll wapas on karein
+        
+        // Video stop karne ke liye iframe reset
+        let videoSrc = iframe.src;
+        iframe.src = '';
+        iframe.src = videoSrc;
+    });
+}
+
+// 3. Modal ke bahar click karne par bhi close ho jaye (Optional but Good)
+window.addEventListener('click', (e) => {
+    if (e.target === sanatanModal) {
+        closeBtn.click();
+    }
+});
+</script>
+  <script>
+const sanatanModal = document.getElementById('sanatan-video-modal');
+const openBtn = document.getElementById('open-sanatan-modal');
+const closeBtn = document.getElementById('close-sanatan-modal');
+
+if(openBtn) {
+    openBtn.onclick = function(e) {
+        e.preventDefault();
+        sanatanModal.style.display = 'flex';
+        // Background scroll band karein par modal ka scroll upar set rahe
+        document.body.style.overflow = 'hidden';
+        sanatanModal.scrollTop = 0; 
+    }
+}
+
+if(closeBtn) {
+    closeBtn.onclick = function() {
+        sanatanModal.style.display = 'none';
+        // Background scroll wapas chalu karein
+        document.body.style.overflow = 'auto';
+        
+        // Video stop karein
+        const iframe = document.getElementById('sanatan-yt-iframe');
+        const src = iframe.src;
+        iframe.src = "";
+        iframe.src = src;
+    }
+}
+</script>
 </body>
 </html>

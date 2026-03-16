@@ -372,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const body = document.body;
     
     if (vankariZone) {
-        const bassSound = new Audio('/static/audio/vankari-sound.mp3'); 
+        const bassSound = new Audio('./static/audio/vankari-sound.mp3'); 
         bassSound.volume = 0.8; 
         let soundTimeout;
 
