@@ -699,26 +699,55 @@ body.modal-open {
     </div>
 </div>
 
-        <div id="vankari-video-modal" class="custom-series-modal vankari-modal-theme">
-            <div class="modal-backdrop" id="vankari-backdrop"></div>
-            <div class="sanatan-modal-content vankari-modal-box">
-                <div class="modal-close-btn" id="close-vankari-modal">&times;</div>
-                <div class="video-container" style="background: #000;">
-                    <video id="vankari-video-player" controls playsinline preload="auto" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
-                        <source src="./static/videos/vankari.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="sanatan-modal-text">
-                    <h3 class="modal-gold-title" style="color: #ff3333; text-shadow: 0 2px 10px rgba(255,51,51,0.3);">Welcome to the Darkness</h3>
-                    <p class="lead-text" style="color: #fff; font-style: italic; font-weight: 600;">"Some secrets are buried for a reason. Some debts are paid in blood."</p>
-                    <p style="color: #aaa; font-size: 0.9rem; line-height: 1.6; margin-top: 15px;">A dark psychological thriller where history, mystery, and deadly tribal secrets collide. Power protects the guilty... until someone decides to collect. Step into the ancient caves of Patalpani and face the chilling legacy of the Vankari tribe.</p>
-                    <a href="./products/book_vankari.html" style="display: inline-block; margin-top: 15px; color: #ff3333; text-decoration: none; font-weight: 700; border-bottom: 1px dashed #ff3333; padding-bottom: 3px; letter-spacing: 1px;">
-                        EXPLORE THE MYSTERY ▼
-                    </a>
-                </div>
-            </div>
+       <div id="vankari-video-modal" class="custom-series-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 15000; align-items: center; justify-content: center; background: rgba(0,0,0,0.95);">
+    
+    <div class="modal-backdrop" id="vankari-backdrop" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+    
+    <div class="sanatan-modal-content vankari-modal-box" style="position: relative; z-index: 10; width: 95%; max-width: 850px; background: #0a0505; border: 1px solid #ff3333; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.8); overflow: hidden;">
+        
+        <div class="modal-close-btn" id="close-vankari-modal" style="position: absolute; top: 10px; right: 20px; color: #fff; font-size: 2.5rem; cursor: pointer; z-index: 100; text-shadow: 0 0 10px #000;">&times;</div>
+        
+        <div class="video-container" style="background: #000; line-height: 0; border-bottom: 2px solid #ff3333; position: relative; width: 100%; padding-bottom: 56.25%;">
+            <video id="vankari-video-player" controls playsinline preload="auto" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                <source src="{{ url_for('static', filename='videos/vankari.mp4') }}" type="video/mp4">
+            </video>
         </div>
+        
+        <div class="sanatan-modal-text" style="padding: 40px 30px; text-align: center;">
+            <h3 class="modal-gold-title" style="color: #ff3333; font-size: 2.2rem; font-weight: 800; margin-bottom: 15px; text-shadow: 0 2px 10px rgba(255,51,51,0.3);">Welcome to the Darkness</h3>
+            <p class="lead-text" style="color: #fff; font-style: italic; font-weight: 600; margin-bottom: 20px;">"Some secrets are buried for a reason. Some debts are paid in blood."</p>
+            <p style="color: #aaa; font-size: 1rem; line-height: 1.6;">A dark psychological thriller where history, mystery, and deadly tribal secrets collide. Step into the ancient caves of Patalpani and face the chilling legacy of the Vankari tribe.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    const vankariBtn = document.getElementById('open-vankari-modal');
+    const vankariModal = document.getElementById('vankari-video-modal');
+    const vankariClose = document.getElementById('close-vankari-modal');
+    const vankariBackdrop = document.getElementById('vankari-backdrop');
+    const vankariVideo = document.getElementById('vankari-video-player');
+
+    // Popup Open Karna aur Play karna
+    if(vankariBtn) {
+        vankariBtn.onclick = function(e) {
+            e.preventDefault();
+            vankariModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            if(vankariVideo) vankariVideo.play();
+        }
+    }
+
+    // Popup Close karna aur Pause karna
+    function closeVankari() {
+        vankariModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        if(vankariVideo) vankariVideo.pause();
+    }
+
+    if(vankariClose) vankariClose.onclick = closeVankari;
+    if(vankariBackdrop) vankariBackdrop.onclick = closeVankari;
+</script>
 
         <div id="mobile-book-modal" class="mobile-book-modal">
             <div class="modal-header-mobile">
