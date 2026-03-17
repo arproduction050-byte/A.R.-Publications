@@ -612,7 +612,7 @@ body.modal-open {
             }
 
             // Set interval for 4 seconds (4000ms)
-            carouselTimer = setInterval(autoScrollNext, 4000);
+            carouselTimer = setInterval(autoScrollNext, 10000);
 
             // UX Feature: Jab user hover karega tab scroll ruk jayega
             carousel.addEventListener('mouseenter', () => {
@@ -621,7 +621,7 @@ body.modal-open {
 
             // Jab mouse hatayega, wapas start ho jayega
             carousel.addEventListener('mouseleave', () => {
-                carouselTimer = setInterval(autoScrollNext, 4000);
+                carouselTimer = setInterval(autoScrollNext, 10000);
             });
         }
     });
