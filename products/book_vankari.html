@@ -7,8 +7,129 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../static/css/style.css">
+    <style>
+        body { background-color: #050000; color: #fff; margin: 0; font-family: 'Poppins', sans-serif; }
+        .product-top-nav { padding: 15px 20px; max-width: 1300px; margin: 0 auto; }
+        .product-top-nav a { color: #ff3333; text-decoration: none; font-size: 0.95rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
+
+        /* =========================================
+           MOBILE VIEW (100% ORIGINAL - UNTOUCHED)
+        ========================================= */
+        .mobile-book-layout { display: none; padding-bottom: 60px; background: radial-gradient(circle at top, #1a0505 0%, #050000 100%); }
+        
+        .mobile-book-layout .product-hero { width: 100%; display: flex; justify-content: center; padding: 20px; position: relative; }
+        .mobile-book-layout .product-cover { width: 240px; border-radius: 8px; box-shadow: 0 0 50px rgba(255, 0, 0, 0.2), 0 20px 40px rgba(0,0,0,0.9); border: 1px solid rgba(255, 51, 51, 0.3); }
+        .mobile-book-layout .product-info { padding: 20px; text-align: center; }
+        .mobile-book-layout .product-title { font-size: 1.8rem; font-weight: 800; color: #fff; text-shadow: 0 0 15px rgba(255, 51, 51, 0.5); margin-bottom: 5px; }
+        .mobile-book-layout .product-subtitle { color: #ff3333; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; }
+        .mobile-book-layout .product-actions { display: flex; flex-direction: column; gap: 15px; padding: 0 20px 25px; }
+        .mobile-book-layout .btn-buy-vankari { background: linear-gradient(45deg, #800000, #ff0000); color: #fff; padding: 16px; border-radius: 8px; font-weight: 800; text-transform: uppercase; text-align: center; box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3); text-decoration: none; }
+        .mobile-book-layout .warning-box { background: rgba(255, 0, 0, 0.1); border: 1px solid #ff3333; padding: 15px; margin: 0 20px 25px; border-radius: 8px; font-size: 0.85rem; color: #ffcccc; }
+        .mobile-book-layout .quick-facts-row { display: flex; justify-content: space-between; padding: 20px; margin-bottom: 25px; border-top: 1px solid rgba(255, 255, 255, 0.05); border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .mobile-book-layout .fact-item { text-align: center; flex: 1; }
+        .mobile-book-layout .fact-item i { font-size: 1.5rem; color: #ff3333; margin-bottom: 8px; }
+        .mobile-book-layout .fact-value { display: block; font-size: 0.85rem; font-weight: 600; }
+        .mobile-book-layout .description-section { padding: 0 20px; }
+        .mobile-book-layout .description-section h3 { color: #fff; margin-bottom: 15px; font-size: 1.3rem; border-left: 4px solid #ff3333; padding-left: 10px; }
+        .mobile-book-layout .description-content { color: #ccc; font-size: 0.95rem; line-height: 1.8; }
+        .mobile-book-layout .feature-list { list-style: none; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 8px; margin: 15px 0; }
+        .mobile-book-layout .feature-list li { margin-bottom: 8px; color: #ffcccc; display: flex; gap: 10px; }
+        .mobile-book-layout .feature-list li::before { content: '†'; color: #ff3333; font-weight: bold; }
+        .mobile-book-layout .details-box { background: #0a0a0a; padding: 20px; margin: 25px 20px; border-radius: 8px; border: 1px solid #1a1a1a; }
+        .mobile-book-layout .details-box ul { list-style: none; padding: 0; }
+        .mobile-book-layout .details-box li { font-size: 0.9rem; color: #888; margin-bottom: 10px; display: flex; justify-content: space-between; }
+        .mobile-book-layout .details-box li strong { color: #eee; }
+
+        /* =========================================
+           NEW: DESKTOP VIEW (AMAZON/FLIPKART STYLE)
+        ========================================= */
+        .desktop-book-layout { display: none; padding: 20px; max-width: 1300px; margin: 0 auto; background: radial-gradient(circle at top, #1a0505 0%, #050000 100%); border-radius: 20px; }
+        
+        .desktop-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr 320px;
+            gap: 40px;
+            align-items: start;
+        }
+        
+        /* 1. Left: Image Cover */
+        .desktop-cover-col { position: sticky; top: 100px; }
+        .desktop-cover-img {
+            width: 100%; border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(255,51,51,0.2);
+            border: 1px solid rgba(255,51,51,0.3);
+        }
+
+        /* 2. Center: Details & Description */
+        .desktop-info-col h1 { font-size: 2.2rem; margin: 0 0 5px 0; color: #fff; line-height: 1.2; font-weight: 800; text-shadow: 0 0 15px rgba(255, 51, 51, 0.4); }
+        .desktop-info-col .subtitle { color: #ff3333; font-size: 1rem; font-weight: 600; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
+        .desktop-info-col .author { color: #aaa; font-size: 1.05rem; margin-bottom: 15px; }
+        .divider { height: 1px; background: rgba(255,51,51,0.2); margin: 20px 0; }
+        
+        .desktop-warning { background: rgba(255, 0, 0, 0.1); border: 1px solid #ff3333; padding: 15px; border-radius: 8px; font-size: 0.9rem; color: #ffcccc; margin-bottom: 20px; }
+
+        .desktop-facts-row { display: flex; gap: 40px; }
+        .desktop-fact { display: flex; flex-direction: column; gap: 4px; }
+        .desktop-fact-label { color: #888; font-size: 0.85rem; }
+        .desktop-fact-value { color: #fff; font-weight: 600; font-size: 1rem; display: flex; align-items: center; gap: 8px; }
+        .desktop-fact-value i { color: #ff3333; font-size: 1.2rem; }
+        
+        .desktop-desc h3 { font-size: 1.4rem; color: #fff; margin-bottom: 15px; border-left: 4px solid #ff3333; padding-left: 10px; }
+        .desktop-desc p { color: #ccc; line-height: 1.8; font-size: 1rem; margin-bottom: 15px; }
+        .desktop-desc .feature-list { list-style: none; padding: 15px; background: rgba(255,255,255,0.03); border-radius: 8px; margin: 15px 0; }
+        .desktop-desc .feature-list li { margin-bottom: 8px; color: #ffcccc; display: flex; gap: 10px; font-size: 0.95rem; }
+        .desktop-desc .feature-list li::before { content: '†'; color: #ff3333; font-weight: bold; }
+        
+        .desktop-details-table { margin-top: 30px; background: #0a0a0a; padding: 20px; border-radius: 8px; border: 1px solid #1a1a1a; }
+        .desktop-details-table h3 { font-size: 1.2rem; color: #fff; margin-bottom: 15px; }
+        .desktop-details-table ul { list-style: none; padding: 0; margin: 0; }
+        .desktop-details-table li { display: flex; margin-bottom: 12px; color: #888; font-size: 0.95rem; }
+        .desktop-details-table li strong { width: 160px; color: #eee; }
+
+        /* 3. Right: Buy Box */
+        .desktop-buy-box {
+            background: rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,51,51,0.3);
+            border-radius: 12px;
+            padding: 25px;
+            position: sticky;
+            top: 100px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .buy-price-block { font-size: 2.2rem; font-weight: 800; color: #fff; display: flex; align-items: flex-start; line-height: 1; margin-bottom: 5px; }
+        .buy-currency { font-size: 1rem; margin-top: 4px; margin-right: 2px; color: #aaa; }
+        .buy-stock { color: #ff3333; font-weight: 600; font-size: 1.1rem; margin-bottom: 15px; }
+        .buy-delivery { color: #888; font-size: 0.95rem; line-height: 1.5; margin-bottom: 25px; }
+        
+        .btn-amazon-desktop {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: linear-gradient(45deg, #1a73e8, #4285f4); color: #fff; padding: 15px; border-radius: 8px;
+            font-weight: 800; text-transform: uppercase; text-decoration: none;
+            margin-bottom: 15px; width: 100%; transition: 0.3s; box-shadow: 0 10px 30px rgba(66, 133, 244, 0.3);
+        }
+        .btn-amazon-desktop:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(66, 133, 244, 0.5); }
+        
+        .buy-meta { margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(255,51,51,0.2); font-size: 0.85rem; color: #666; line-height: 1.8; }
+        .buy-meta span { color: #1a73e8; float: right; }
+
+        /* Smooth fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Media Queries */
+        @media (max-width: 991px) {
+            .desktop-book-layout { display: none !important; }
+            .mobile-book-layout { display: block !important; }
+        }
+        @media (min-width: 992px) {
+            .desktop-book-layout { display: block !important; }
+            .mobile-book-layout { display: none !important; }
+        }
+    </style>
 </head>
-<body>
+<body style="background: #050000;">
 
 <nav class="navbar" style="background: #050000; border-bottom: 1px solid rgba(255, 0, 0, 0.2); padding: 15px 0;">
     <div class="container" style="display: flex; justify-content: center; align-items: center;">
@@ -20,132 +141,165 @@
     </div>
 </nav>
 
-<style>
-    .vankari-product-page { background: radial-gradient(circle at top, #1a0505 0%, #050000 100%); color: #fff; min-height: 100vh; font-family: 'Inter', sans-serif; padding-bottom: 60px; }
-    .product-top-nav { padding: 15px 20px; max-width: 1200px; margin: 0 auto; }
-    .product-top-nav a { color: #ff3333; text-decoration: none; font-size: 0.9rem; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; }
-    
-    .amazon-grid { display: flex; flex-direction: column; gap: 20px; padding: 10px 20px; max-width: 1200px; margin: 0 auto; }
-    .mobile-title { display: block; margin-bottom: 10px; }
-    .desktop-title { display: none; }
-    
-    .amazon-left { text-align: center; order: 1; }
-    .product-cover { width: 100%; max-width: 260px; border-radius: 4px; box-shadow: 0 10px 30px rgba(255,51,51,0.2); border: 1px solid rgba(255,51,51,0.2); }
-    
-    .amazon-right { order: 2; width: 100%; }
-    .buy-box { border: 1px solid rgba(255,51,51,0.3); border-radius: 8px; padding: 20px; background: rgba(255,51,51,0.03); }
-    .buy-box-header { font-weight: 700; color: #fff; margin-bottom: 10px; font-size: 1.1rem; }
-    .price-text { font-size: 2.2rem; font-weight: 700; color: #fff; margin-bottom: 5px; display: flex; align-items: flex-start; line-height: 1; }
-    .price-currency { font-size: 1.1rem; margin-top: 4px; margin-right: 2px; color: #ccc; }
-    .price-decimal { font-size: 1.1rem; margin-top: 4px; color: #ccc; }
-    
-    .btn-buy { background: #ffd814; color: #000; border-radius: 30px; padding: 12px; text-align: center; font-weight: 600; text-decoration: none; display: block; margin-bottom: 15px; border: 1px solid #fcd200; transition: background 0.2s; font-size: 0.95rem; }
-    .btn-buy:hover { background: #f7ca00; }
-    .sold-by-info { font-size: 0.8rem; color: #aaa; line-height: 1.6; margin-top: 15px; text-align: center; }
-    .sold-by-info span { color: #ff3333; cursor: pointer; }
-    
-    .amazon-center { order: 3; display: flex; flex-direction: column; gap: 15px; }
-    .product-title { font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; line-height: 1.3; margin: 0; }
-    .product-author { color: #ff3333; font-size: 1rem; margin-bottom: 5px; display: block; }
-    .divider { height: 1px; background: rgba(255,51,51,0.2); margin: 10px 0; }
-    
-    .product-description p { color: #ccc; font-size: 0.95rem; line-height: 1.6; margin-bottom: 15px; }
-    
-    .quick-facts-container { display: flex; justify-content: space-between; gap: 15px; margin-top: 10px; flex-wrap: wrap; }
-    .fact-item { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; min-width: 80px; }
-    .fact-item i { font-size: 1.5rem; color: #ff3333; }
-    .fact-item span { font-size: 0.85rem; color: #fff; font-weight: 600; text-align: center; }
-    .fact-item small { font-size: 0.75rem; color: #888; text-align: center; }
+<div class="product-top-nav">
+    <a href="../index.html"><i class="fas fa-chevron-left"></i> The Universe</a>
+</div>
 
-    @media (min-width: 992px) {
-        .amazon-grid { display: grid; grid-template-columns: 260px 1fr 300px; gap: 40px; align-items: start; padding: 30px 20px; }
-        .mobile-title { display: none; }
-        .desktop-title { display: block; }
-        .amazon-left { position: sticky; top: 100px; order: 1; }
-        .amazon-center { order: 2; }
-        .amazon-right { order: 3; position: sticky; top: 100px; }
-        .product-title { font-size: 2.2rem; }
-    }
-</style>
-
-<div class="vankari-product-page">
-    <div class="product-top-nav">
-        <a href="../index.html"><i class="fas fa-chevron-left"></i> The Universe</a>
-    </div>
-
-    <div class="mobile-title">
-        <h1 class="product-title">The Vankari Debt: Volume 1: The Beginning</h1>
-        <span class="product-author">by Anuj Rawal (Author) | Format: Kindle Edition</span>
-    </div>
-
-    <div class="amazon-grid">
-        <div class="amazon-left">
-            <img src="../static/images/vankari.jpg" alt="The Vankari Debt" class="product-cover">
+<div class="desktop-book-layout">
+    <div class="desktop-grid">
+        
+        <div class="desktop-cover-col">
+            <img src="../static/images/vankari.jpg" alt="The Vankari Debt" class="desktop-cover-img">
         </div>
 
-        <div class="amazon-center">
-            <div class="desktop-title">
-                <h1 class="product-title">The Vankari Debt - Volume 1: The Beginning</h1>
-                <span class="product-author">by Anuj Rawal (Author) | Format: eBook / Play Books</span>
+        <div class="desktop-info-col">
+            <h1>The Vankari Debt</h1>
+            <div class="subtitle">Volume 1: The Beginning</div>
+            <div class="author">by Anuj Rawal</div>
+            
+            <div class="desktop-warning">
+                <strong>⚠️ CONTENT WARNING:</strong> This book contains mature themes, graphic violence, psychological trauma, and explicit content. Reader discretion is advised.
+            </div>
+            
+            <div class="desktop-facts-row">
+                <div class="desktop-fact">
+                    <span class="desktop-fact-label">Print length</span>
+                    <span class="desktop-fact-value"><i class="fas fa-scroll"></i> 108 Pages</span>
+                </div>
+                <div class="desktop-fact">
+                    <span class="desktop-fact-label">Genre</span>
+                    <span class="desktop-fact-value"><i class="fas fa-skull-crossbones"></i> Dark Thriller</span>
+                </div>
+                <div class="desktop-fact">
+                    <span class="desktop-fact-label">Language</span>
+                    <span class="desktop-fact-value"><i class="fas fa-language"></i> English</span>
+                </div>
             </div>
             
             <div class="divider"></div>
             
-            <div class="product-description">
-                <p><em>A Dark Psychological Crime Thriller</em></p>
+            <div class="desktop-desc">
+                <h3>The Beginning</h3>
                 <p><strong>Power protects the guilty. Until someone decides to collect.</strong></p>
                 <p>In the heart of modern India, Joy Khanna lives untouchable—shielded by his father’s money. But one reckless night changes everything.</p>
                 
-                <div id="vankari-more" style="display: none;">
+                <div id="desktop-vankari-more" style="display: none; animation: fadeIn 0.4s ease-out;">
                     <p>A chance encounter triggers a brutal chain reaction, forcing three souls into a violent escape guided by strangers in shadows and hunted by a man who believes justice must be paid in blood.</p>
+                    <p style="color: #ff3333; font-weight: 600; margin-top: 15px;">If you enjoy:</p>
+                    <ul class="feature-list">
+                        <li>Dark crime and psychological thrillers</li>
+                        <li>Morally grey characters</li>
+                        <li>High-stakes survival narratives</li>
+                        <li>Slow-burn tension with shocking revelations</li>
+                    </ul>
                     <p>Beneath the chase lies an ancient, buried debt—one tied to forgotten rituals and a name that was never meant to resurface. The debt has been awakened. This is only the beginning.</p>
                 </div>
-                
-                <button onclick="toggleVankari()" id="vankari-btn" style="background:none; border:none; color:#ff3333; font-weight:600; cursor:pointer; padding:0;">
-                    <i class="fas fa-chevron-down"></i> Read more
-                </button>
+                <button onclick="document.getElementById('desktop-vankari-more').style.display='block'; this.style.display='none';" style="background:none; border:none; color:#ff3333; cursor:pointer; font-weight:700; padding:0; font-size:1rem;"><i class="fas fa-chevron-down"></i> READ FULL SYNOPSIS</button>
             </div>
-
-            <div class="divider"></div>
-
-            <div class="quick-facts-container">
-                <div class="fact-item"><i class="fas fa-scroll"></i><small>Print length</small><span>108 Pages</span></div>
-                <div class="fact-item"><i class="fas fa-language"></i><small>Language</small><span>English</span></div>
-                <div class="fact-item"><i class="fas fa-building"></i><small>Publisher</small><span>A.R. Pub.</span></div>
+            
+            <div class="desktop-details-table">
+                <h3>Product details</h3>
+                <ul>
+                    <li><strong>Publisher:</strong> A.R. Publications</li>
+                    <li><strong>Publication Date:</strong> 26 January 2026</li>
+                    <li><strong>ISBN-13:</strong> 978-8199708792</li>
+                    <li><strong>Reading Age:</strong> 18+ Years</li>
+                </ul>
             </div>
         </div>
 
-        <div class="amazon-right">
-            <div class="buy-box">
-                <div class="buy-box-header">eBook Edition</div>
-                <div class="price-text"><span class="price-currency">₹</span>149<span class="price-decimal">.00</span></div>
-                <p style="color: #ff3333; font-size: 0.9rem; font-weight: 600; margin-bottom: 15px;">Available instantly</p>
+        <div class="desktop-buy-col">
+            <div class="desktop-buy-box">
+                <div class="buy-price-block"><span class="buy-currency">₹</span>139.00</div>
+                <div class="buy-stock">Available instantly</div>
+                <div class="buy-delivery">Read instantly on your browser or Android/iOS devices via Google Play Books app.</div>
                 
-                <a href="https://play.google.com/store/books/details/Anuj_Rawal_The_Vankari_Debt?id=gSnFEQAAQBAJ" target="_blank" class="btn-buy">Buy now</a>
+                <a href="https://play.google.com/store/books/details/Anuj_Rawal_The_Vankari_Debt?id=gSnFEQAAQBAJ" target="_blank" class="btn-amazon-desktop"><i class="fab fa-google-play"></i> Get on Play Books</a>
                 
-                <p style="font-size: 0.75rem; color: #888; text-align: center; margin-bottom: 0;">By clicking the above button, you agree to the Terms of Use.</p>
-                
-                <div class="sold-by-info">
-                    Sold by: <span>Google Play / A.R. Publications</span><br>
-                    Format: <span>Digital eBook</span>
+                <div class="buy-meta">
+                    Platform <span>Google Play</span><br>
+                    Format <span>Digital eBook</span><br>
+                    Publisher <span>A.R. Publications</span>
                 </div>
             </div>
         </div>
+        
     </div>
 </div>
 
-<script>
-function toggleVankari() {
-    var moreText = document.getElementById("vankari-more");
-    var btnText = document.getElementById("vankari-btn");
-    if (moreText.style.display === "none") {
-        moreText.style.display = "block";
-        btnText.innerHTML = '<i class="fas fa-chevron-up"></i> Read less';
-    } else {
-        moreText.style.display = "none";
-        btnText.innerHTML = '<i class="fas fa-chevron-down"></i> Read more';
-    }
-}
-</script>
+
+<div class="mobile-book-layout vankari-product-page">
+
+    <div class="product-hero">
+        <img src="../static/images/vankari.jpg" alt="The Vankari Debt" class="product-cover">
+    </div>
+
+    <div class="product-info">
+        <h1 class="product-title">The Vankari Debt</h1>
+        <div class="product-subtitle">Volume 1: The Beginning</div>
+        <p style="color: #888;">by Anuj Rawal</p>
+    </div>
+
+    <div class="product-actions">
+        <a href="https://play.google.com/store/books/details/Anuj_Rawal_The_Vankari_Debt?id=gSnFEQAAQBAJ" target="_blank" class="btn-buy-vankari" style="background: linear-gradient(45deg, #1a73e8, #4285f4); box-shadow: 0 10px 30px rgba(66, 133, 244, 0.3);">
+            <i class="fab fa-google-play"></i> Get on Play Books
+        </a>
+    </div>
+
+    <div class="warning-box">
+        <strong>⚠️ CONTENT WARNING:</strong> This book contains mature themes, graphic violence, psychological trauma, and explicit content. Reader discretion is advised.
+    </div>
+
+    <div class="quick-facts-row">
+        <div class="fact-item">
+            <i class="fas fa-scroll"></i>
+            <span class="fact-value">108 Pages</span>
+        </div>
+        <div class="fact-item">
+            <i class="fas fa-skull-crossbones"></i>
+            <span class="fact-value">Dark Thriller</span>
+        </div>
+        <div class="fact-item">
+            <i class="fas fa-language"></i>
+            <span class="fact-value">English</span>
+        </div>
+    </div>
+
+    <div class="description-section">
+        <h3>The Beginning</h3>
+        <div class="description-content">
+            <p><strong>Power protects the guilty. Until someone decides to collect.</strong></p>
+            <p>In the heart of modern India, Joy Khanna lives untouchable—shielded by his father’s money. But one reckless night changes everything.</p>
+            
+            <div id="mobile-vankari-more" style="display: none; animation: fadeIn 0.5s;">
+                <p>A chance encounter triggers a brutal chain reaction, forcing three souls into a violent escape guided by strangers in shadows and hunted by a man who believes justice must be paid in blood.</p>
+                
+                <p style="color: #ff3333; font-weight: 600; margin-top: 15px;">If you enjoy:</p>
+                <ul class="feature-list">
+                    <li>Dark crime and psychological thrillers</li>
+                    <li>Morally grey characters</li>
+                    <li>High-stakes survival narratives</li>
+                    <li>Slow-burn tension with shocking revelations</li>
+                </ul>
+                
+                <p>Beneath the chase lies an ancient, buried debt—one tied to forgotten rituals and a name that was never meant to resurface. The debt has been awakened. This is only the beginning.</p>
+            </div>
+
+            <button onclick="document.getElementById('mobile-vankari-more').style.display='block'; this.style.display='none';" style="background:none; border:none; color:#ff3333; font-weight:700; padding:0; margin-top:10px; cursor:pointer;">
+                READ FULL SYNOPSIS ▼
+            </button>
+        </div>
+    </div>
+
+    <div class="details-box">
+        <ul>
+            <li><strong>Publisher</strong> <span>A.R. Publications</span></li>
+            <li><strong>Publication Date</strong> <span>26 January 2026</span></li>
+            <li><strong>ISBN-13</strong> <span>978-8199708792</span></li>
+            <li><strong>Reading Age</strong> <span>18+ Years</span></li>
+        </ul>
+    </div>
+</div>
+
 </body>
 </html>
